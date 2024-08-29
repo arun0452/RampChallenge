@@ -64,8 +64,11 @@ export function App() {
             if (newValue === null) {
               return
             }
-
-            await loadTransactionsByEmployee(newValue.id)
+            if (newValue.id === '') {
+              await loadAllTransactions()  /* Fix for Bug 3 */ 
+            } else {
+              await loadTransactionsByEmployee(newValue.id)
+            }
           }}
         />
 
